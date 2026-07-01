@@ -9,4 +9,3 @@
 #   end
 
 
-User.create!(email: "tyler@test.com", password: "password", password_confirmation: "password")
