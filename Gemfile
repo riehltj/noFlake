@@ -18,7 +18,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem "devise"
-gem "stripe", "~> 13.0"
+gem "stripe", "~> 19.3"
 gem "tailwindcss-rails"
 gem "dotenv-rails"
 
