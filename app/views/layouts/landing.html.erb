@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "noFlake" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="noFlake">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= yield :head %>
+    <link rel="icon" href="<%= asset_path('logo.ico') %>" type="image/x-icon">
+    <link rel="apple-touch-icon" href="<%= asset_path('logo.png') %>">
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  </head>
+  <body class="bg-white text-gray-900 min-h-screen">
+    <header class="border-b border-gray-100 bg-white/90 backdrop-blur-sm sticky top-0 z-50">
+      <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="<%= root_path %>" class="flex items-center gap-2">
+          <%= image_tag "logo.webp", alt: "noFlake", class: "h-10 w-10" %>
+          <span class="font-semibold text-lg tracking-tight text-card">noFlake</span>
+        </a>
+
+        <%# Desktop nav %>
+        <nav class="hidden sm:flex items-center gap-6 text-sm">
+          <% if user_signed_in? %>
+            <a href="<%= dashboard_path %>" class="text-gray-600 hover:text-gray-900 font-medium">Dashboard</a>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-500 hover:text-gray-900 bg-transparent border-0 p-0 cursor-pointer text-sm" %>
+          <% else %>
+            <a href="#how-it-works" class="text-gray-500 hover:text-gray-900">How it works</a>
+            <a href="#pricing" class="text-gray-500 hover:text-gray-900">Pricing</a>
+            <%= link_to "Sign in", new_user_session_path, class: "text-gray-600 hover:text-gray-900 font-medium" %>
+            <%= link_to "Get started free", new_user_registration_path, class: "bg-cta text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity" %>
+          <% end %>
+        </nav>
+
+        <%# Hamburger button (mobile only) %>
+        <button
+          onclick="document.getElementById('landing-mobile-nav').classList.toggle('hidden')"
+          class="sm:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <%# Mobile nav dropdown %>
+      <div id="landing-mobile-nav" class="hidden sm:hidden border-t border-gray-100 bg-white">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-1 text-sm">
+          <% if user_signed_in? %>
+            <a href="<%= dashboard_path %>" class="py-2.5 text-gray-700 font-medium hover:text-gray-900">Dashboard</a>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "py-2.5 text-left text-gray-600 hover:text-gray-900 bg-transparent border-0 p-0 cursor-pointer w-full text-sm" %>
+          <% else %>
+            <a href="#how-it-works" onclick="document.getElementById('landing-mobile-nav').classList.add('hidden')" class="py-2.5 text-gray-600 hover:text-gray-900 border-b border-gray-50">How it works</a>
+            <a href="#pricing" onclick="document.getElementById('landing-mobile-nav').classList.add('hidden')" class="py-2.5 text-gray-600 hover:text-gray-900 border-b border-gray-50">Pricing</a>
+            <%= link_to "Sign in", new_user_session_path, class: "py-2.5 text-gray-700 font-medium hover:text-gray-900 border-b border-gray-50 block" %>
+            <%= link_to "Get started free", new_user_registration_path, class: "mt-2 block w-full bg-cta text-white px-4 py-3 rounded-lg text-sm font-semibold text-center hover:opacity-90 transition-opacity" %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+
+    <% if notice.present? %>
+      <div class="bg-card/10 border-b border-card/30 text-card px-6 py-3 text-sm text-center"><%= notice %></div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="bg-red-50 border-b border-red-200 text-red-800 px-6 py-3 text-sm text-center"><%= alert %></div>
+    <% end %>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer class="border-t border-gray-100 bg-gray-50">
+      <div class="max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+        <span class="font-semibold text-gray-700">noFlake</span>
+        <div class="flex gap-6">
+          <a href="/terms" class="hover:text-gray-700">Terms</a>
+          <a href="/privacy" class="hover:text-gray-700">Privacy</a>
+          <a href="mailto:tyler.riehl16@gmail.com" class="hover:text-gray-700">Contact</a>
+        </div>
+        <span>&copy; <%= Date.current.year %> noFlake. All rights reserved.</span>
+      </div>
+    </footer>
+  </body>
+</html>

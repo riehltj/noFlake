@@ -1,0 +1,359 @@
+<% content_for :title, "noFlake – Stop no-shows before they happen" %>
+
+<%# ── Hero ─────────────────────────────────────────────────────── %>
+<section class="relative overflow-hidden bg-white py-16">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="relative bg-card rounded-3xl shadow-lg overflow-hidden">
+      <div class="grid grid-cols-1 sm:grid-cols-2 items-center">
+
+        <%# Left: copy %>
+        <div class="px-8 sm:px-12 py-14 sm:py-16">
+          <div class="inline-flex items-center gap-2 bg-accent text-card text-xs font-semibold px-3 py-1.5 rounded-full mb-8">
+            <span class="w-1.5 h-1.5 rounded-full bg-card"></span>
+            Free to start &mdash; no monthly fees, ever
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.05]">
+            No-shows cost you<br>
+            <span class="text-accent">real money.</span>
+          </h1>
+          <p class="mt-6 text-lg text-white/80 leading-relaxed max-w-sm">
+            noFlake collects a small refundable hold when clients book. They show up — hold released. They ghost — you keep it.
+          </p>
+          <div class="mt-10 flex flex-col sm:flex-row items-start gap-4">
+            <%= link_to "Get started free", new_user_registration_path, class: "bg-cta text-white px-8 py-4 rounded-xl font-semibold text-base hover:opacity-90 transition-opacity shadow-sm" %>
+            <a href="#how-it-works" class="text-white/70 hover:text-accent font-medium text-base flex items-center gap-1 py-4">
+              See how it works <span aria-hidden="true">&darr;</span>
+            </a>
+          </div>
+          <p class="mt-4 text-xs text-white/50">No credit card required &middot; Setup in under 2 minutes</p>
+        </div>
+
+        <%# Right: booking page mockup %>
+        <div class="flex items-center justify-center p-8 sm:p-10">
+          <div class="w-full max-w-xs rounded-2xl overflow-hidden shadow-2xl border border-white/20">
+            <%# Browser chrome %>
+            <div class="bg-gray-800/60 px-3 py-2.5 flex items-center gap-2">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-400/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-300/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-400/80"></span>
+              </div>
+              <div class="ml-2 flex-1 bg-white/10 rounded px-2 py-0.5 text-xs text-white/50 truncate">noflake.shop/alex/haircut</div>
+            </div>
+            <%# Booking card body %>
+            <div class="bg-white p-6">
+              <p class="text-lg font-semibold text-gray-900">Haircut with Alex</p>
+              <div class="mt-4 space-y-2.5">
+                <div class="flex justify-between items-center text-sm">
+                  <span class="text-gray-500">Hold amount</span>
+                  <span class="font-bold text-xl text-gray-900">$25.00</span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                  <span class="text-gray-500">Full service price</span>
+                  <span class="text-gray-700">$80.00</span>
+                </div>
+              </div>
+              <div class="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg px-3 py-2.5 text-xs text-yellow-800 leading-relaxed">
+                Your hold is fully refunded when you show up for your appointment.
+              </div>
+              <div class="mt-4 w-full bg-cta text-white py-3 rounded-xl font-semibold text-sm text-center">Reserve Spot &rarr;</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ── Social proof strip ──────────────────────────────────────── %>
+<section class="bg-card border-y border-gray-100 py-8">
+  <div class="mx-auto px-6 text-center">
+    <p class="text-sm text-accent font-medium uppercase tracking-widest mb-6">Built for businesses like</p>
+    <div class="flex flex-wrap justify-center gap-x-10 gap-y-3 text-sm font-semibold text-white">
+      <span>Tattoo Artists</span>
+      <span>&middot;</span>
+      <span>Hair Stylists</span>
+      <span>&middot;</span>
+      <span>Photographers</span>
+      <span>&middot;</span>
+      <span>Personal Trainers</span>
+      <span>&middot;</span>
+      <span>Tutors</span>
+      <span>&middot;</span>
+      <span>Massage Therapists</span>
+    </div>
+  </div>
+</section>
+
+<%# ── How it works ────────────────────────────────────────────── %>
+<section id="how-it-works" class="py-14 sm:py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-12 sm:mb-20">
+      <p class="text-xs font-bold uppercase tracking-widest text-cta mb-3">How it works</p>
+      <h2 class="text-4xl font-extrabold text-gray-900">Up and running in minutes</h2>
+    </div>
+
+    <div class="space-y-16 sm:space-y-24">
+
+      <%# Step 1: Sign up %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-5xl font-extrabold text-gray-100 mb-3 leading-none">01</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Create your free account</h3>
+          <p class="text-gray-500 leading-relaxed">Sign up in seconds with just an email and a URL for your booking page — no credit card, no monthly fee, ever.</p>
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
+          <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+            <div class="flex gap-1.5"><span class="w-3 h-3 rounded-full bg-red-400"></span><span class="w-3 h-3 rounded-full bg-yellow-400"></span><span class="w-3 h-3 rounded-full bg-green-400"></span></div>
+            <div class="ml-3 flex-1 bg-white rounded px-3 py-1 text-xs text-gray-400">noflake.shop/users/sign_up</div>
+          </div>
+          <div class="bg-white p-6 space-y-3">
+            <p class="text-sm font-semibold text-gray-900">Create your account</p>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">Email</div>
+              <div class="border border-gray-300 rounded-lg px-3 py-2 text-xs text-gray-400">alex@example.com</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">Your booking page URL</div>
+              <div class="border border-gray-300 rounded-lg px-3 py-2 text-xs flex items-center gap-1">
+                <span class="text-gray-300">noflake.shop/</span><span class="text-gray-700 font-medium">alex-cuts</span>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">Password</div>
+              <div class="border border-gray-300 rounded-lg px-3 py-2 text-xs text-gray-400">••••••••</div>
+            </div>
+            <div class="w-full bg-cta text-white py-2 rounded-lg text-xs font-semibold text-center">Create account</div>
+          </div>
+        </div>
+      </div>
+
+      <%# Step 2: Connect Stripe %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
+        <div class="sm:order-2">
+          <div class="text-5xl font-extrabold text-gray-100 mb-3 leading-none">02</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Connect your bank via Stripe</h3>
+          <p class="text-gray-500 leading-relaxed">Link your Stripe account in one click. Payments from clients go directly to you — noFlake never holds your money.</p>
+        </div>
+        <div class="sm:order-1 rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
+          <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+            <div class="flex gap-1.5"><span class="w-3 h-3 rounded-full bg-red-400"></span><span class="w-3 h-3 rounded-full bg-yellow-400"></span><span class="w-3 h-3 rounded-full bg-green-400"></span></div>
+            <div class="ml-3 flex-1 bg-white rounded px-3 py-1 text-xs text-gray-400">noflake.shop/dashboard</div>
+          </div>
+          <div class="bg-white p-5">
+            <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs font-semibold text-yellow-900">Connect your Stripe account</p>
+                <p class="text-xs text-yellow-700 mt-0.5">You need Stripe to collect holds from clients.</p>
+              </div>
+              <div class="bg-cta text-white text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0">Connect Stripe &rarr;</div>
+            </div>
+            <div class="mt-4 flex items-center gap-2 text-xs text-gray-400">
+              <svg class="w-4 h-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              Secured by Stripe — industry-standard payment infrastructure
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# Step 3: Create a booking link %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-5xl font-extrabold text-gray-100 mb-3 leading-none">03</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Create a booking link</h3>
+          <p class="text-gray-500 leading-relaxed">Name your service, set the hold amount, and optionally show the full price. Your shareable link is ready in seconds.</p>
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
+          <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+            <div class="flex gap-1.5"><span class="w-3 h-3 rounded-full bg-red-400"></span><span class="w-3 h-3 rounded-full bg-yellow-400"></span><span class="w-3 h-3 rounded-full bg-green-400"></span></div>
+            <div class="ml-3 flex-1 bg-white rounded px-3 py-1 text-xs text-gray-400">noflake.shop/dashboard</div>
+          </div>
+          <div class="bg-white p-5 space-y-3">
+            <p class="text-xs font-semibold text-gray-700">Create a Booking Link</p>
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <div class="text-xs text-gray-500 mb-1">Service name</div>
+                <div class="border border-gray-300 rounded-lg px-2 py-1.5 text-xs text-gray-700">Haircut</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 mb-1">Hold ($)</div>
+                <div class="border border-gray-300 rounded-lg px-2 py-1.5 text-xs text-gray-700">25</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 mb-1">Full price ($)</div>
+                <div class="border border-gray-300 rounded-lg px-2 py-1.5 text-xs text-gray-400">80</div>
+              </div>
+            </div>
+            <div class="bg-cta text-white text-xs font-semibold px-3 py-1.5 rounded-lg text-center">Create Link</div>
+            <div class="border border-gray-100 rounded-lg px-3 py-2.5 flex items-center justify-between">
+              <div>
+                <p class="text-xs font-medium text-gray-800">Haircut</p>
+                <p class="text-xs text-gray-400 mt-0.5">Hold: $25.00 &middot; Full: $80.00</p>
+              </div>
+              <div class="text-xs border border-gray-300 rounded px-2 py-1 text-gray-500">Copy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# Step 4: Share the link %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
+        <div class="sm:order-2">
+          <div class="text-5xl font-extrabold text-gray-100 mb-3 leading-none">04</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Share it with your client</h3>
+          <p class="text-gray-500 leading-relaxed">Drop the link anywhere — iMessage, Instagram DM, email, wherever. Clients pay the hold in under a minute, no account needed.</p>
+        </div>
+        <div class="sm:order-1 rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
+          <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+            <div class="flex gap-1.5"><span class="w-3 h-3 rounded-full bg-red-400"></span><span class="w-3 h-3 rounded-full bg-yellow-400"></span><span class="w-3 h-3 rounded-full bg-green-400"></span></div>
+            <div class="ml-3 flex-1 bg-white rounded px-3 py-1 text-xs text-gray-400">noflake.shop/alex-cuts/haircut</div>
+          </div>
+          <div class="bg-white p-6">
+            <p class="text-base font-semibold text-gray-900">Haircut with Alex</p>
+            <div class="mt-3 space-y-2">
+              <div class="flex justify-between items-center text-xs">
+                <span class="text-gray-500">Hold amount</span>
+                <span class="font-bold text-lg text-gray-900">$25.00</span>
+              </div>
+              <div class="flex justify-between items-center text-xs">
+                <span class="text-gray-500">Full service price</span>
+                <span class="text-gray-600">$80.00</span>
+              </div>
+            </div>
+            <div class="mt-3 bg-yellow-50 border border-yellow-200 rounded-lg px-3 py-2 text-xs text-yellow-800">
+              Your hold is fully refunded when you show up.
+            </div>
+            <div class="mt-3 w-full bg-cta text-white py-2.5 rounded-xl font-semibold text-xs text-center">Reserve Spot &rarr;</div>
+          </div>
+        </div>
+      </div>
+
+      <%# Step 5: Refund or keep it %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-5xl font-extrabold text-gray-100 mb-3 leading-none">05</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">They show up or you keep it</h3>
+          <p class="text-gray-500 leading-relaxed">Client walked in? One click releases their hold. They ghosted? The deposit is already in your Stripe account. Done.</p>
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
+          <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+            <div class="flex gap-1.5"><span class="w-3 h-3 rounded-full bg-red-400"></span><span class="w-3 h-3 rounded-full bg-yellow-400"></span><span class="w-3 h-3 rounded-full bg-green-400"></span></div>
+            <div class="ml-3 flex-1 bg-white rounded px-3 py-1 text-xs text-gray-400">noflake.shop/dashboard</div>
+          </div>
+          <div class="bg-white p-4">
+            <p class="text-xs font-semibold text-gray-700 mb-3">Payments</p>
+            <table class="w-full text-xs">
+              <thead>
+                <tr class="text-left text-gray-400 border-b border-gray-100">
+                  <th class="pb-2 font-medium">Customer</th>
+                  <th class="pb-2 font-medium">Amount</th>
+                  <th class="pb-2 font-medium">Status</th>
+                  <th class="pb-2 font-medium"></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-50">
+                <tr>
+                  <td class="py-2 text-gray-600">maya@gmail.com</td>
+                  <td class="py-2">$25.00</td>
+                  <td class="py-2"><span class="bg-card/10 text-card text-xs px-2 py-0.5 rounded-full">Paid</span></td>
+                  <td class="py-2"><span class="text-xs border border-red-300 text-red-500 rounded px-2 py-0.5">Refund</span></td>
+                </tr>
+                <tr>
+                  <td class="py-2 text-gray-600">james@gmail.com</td>
+                  <td class="py-2">$25.00</td>
+                  <td class="py-2"><span class="bg-gray-100 text-gray-500 text-xs px-2 py-0.5 rounded-full">Refunded</span></td>
+                  <td class="py-2 text-gray-300">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<%# ── Features ─────────────────────────────────────────────────── %>
+<section class="py-14 sm:py-24 bg-white border-y border-gray-100">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-xs font-bold uppercase tracking-widest text-cta mb-3">Features</p>
+      <h2 class="text-4xl font-extrabold text-gray-900">Everything you need, nothing you don't</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl border border-gray-100 p-7 flex gap-5 shadow-sm">
+        <div class="w-11 h-11 rounded-xl bg-accent/25 flex items-center justify-center shrink-0 text-xl">💳</div>
+        <div>
+          <h3 class="font-bold text-gray-900 mb-1">Stripe-powered payments</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Deposits go directly to your connected Stripe account. No middleman, no delayed payouts.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-100 p-7 flex gap-5 shadow-sm">
+        <div class="w-11 h-11 rounded-xl bg-accent/25 flex items-center justify-center shrink-0 text-xl">🔗</div>
+        <div>
+          <h3 class="font-bold text-gray-900 mb-1">Simple shareable links</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Works anywhere you already talk to clients — Instagram DM, iMessage, email, wherever.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-100 p-7 flex gap-5 shadow-sm">
+        <div class="w-11 h-11 rounded-xl bg-accent/25 flex items-center justify-center shrink-0 text-xl">↩️</div>
+        <div>
+          <h3 class="font-bold text-gray-900 mb-1">One-click refunds</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Release a client's hold instantly from your dashboard the moment they walk through the door.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-100 p-7 flex gap-5 shadow-sm">
+        <div class="w-11 h-11 rounded-xl bg-accent/25 flex items-center justify-center shrink-0 text-xl">📊</div>
+        <div>
+          <h3 class="font-bold text-gray-900 mb-1">Payment dashboard</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">See every hold, who paid, and release status — all in one place.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ── Pricing ──────────────────────────────────────────────────── %>
+<section id="pricing" class="py-14 sm:py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-xs font-bold uppercase tracking-widest text-cta mb-3">Pricing</p>
+      <h2 class="text-4xl font-extrabold text-gray-900">Simple, transparent, no surprises</h2>
+    </div>
+    <div class="max-w-sm mx-auto bg-white rounded-2xl border-2 border-cta p-10 shadow-lg text-center">
+      <p class="text-sm font-semibold text-cta uppercase tracking-widest mb-4">Free Forever</p>
+      <div class="text-6xl font-extrabold text-gray-900 mb-2">$0</div>
+      <p class="text-gray-500 text-sm mb-8">per month, no setup fees</p>
+      <ul class="text-sm text-gray-600 space-y-3 text-left mb-8">
+        <li class="flex items-center gap-3">
+          <span class="text-card font-bold">✓</span> Unlimited booking links
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="text-card font-bold">✓</span> Unlimited holds collected
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="text-card font-bold">✓</span> Direct Stripe payouts to you
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="text-card font-bold">✓</span> One-click refunds
+        </li>
+        <li class="flex items-center gap-3 text-gray-400">
+          <span class="font-bold">+</span> Stripe processing fee: 2.9% + 30¢
+        </li>
+      </ul>
+      <%= link_to "Get started free", new_user_registration_path, class: "block w-full bg-cta text-white py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity" %>
+    </div>
+  </div>
+</section>
+
+<%# ── Final CTA ────────────────────────────────────────────────── %>
+<section class="bg-white py-24">
+  <div class="max-w-2xl mx-auto px-6 text-center bg-card rounded-3xl py-16 px-10 shadow-lg">
+    <%= image_tag "mascot.png", alt: "noFlake mascot", class: "w-20 h-20 mx-auto mb-4" %>
+    <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-4">Stop leaving money on the table.</h2>
+    <p class="text-accent text-lg mb-10 max-w-md mx-auto">Your first booking link takes under two minutes. No credit card required.</p>
+    <%= link_to "Create your free account →", new_user_registration_path, class: "inline-block bg-cta text-white px-10 py-4 rounded-xl font-bold text-base hover:opacity-90 transition-opacity shadow-sm" %>
+  </div>
+</section>

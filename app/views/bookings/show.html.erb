@@ -1,0 +1,29 @@
+<% content_for :title, "#{@booking_link.service_name} – Reserve Your Spot" %>
+
+<div class="max-w-md mx-auto mt-10">
+  <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+    <h1 class="text-2xl font-semibold mb-1"><%= @booking_link.service_name %></h1>
+
+    <div class="mt-6 space-y-3">
+      <div class="flex justify-between items-center text-sm">
+        <span class="text-gray-500">Hold amount</span>
+        <span class="font-semibold text-lg">$<%= sprintf("%.2f", @booking_link.deposit_cents / 100.0) %></span>
+      </div>
+      <% if @booking_link.price_cents.present? %>
+        <div class="flex justify-between items-center text-sm">
+          <span class="text-gray-500">Full service price</span>
+          <span class="text-gray-700">$<%= sprintf("%.2f", @booking_link.price_cents / 100.0) %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-6 bg-accent/15 border border-accent/40 rounded-lg px-4 py-3 text-sm text-card">
+      Your hold is fully refunded when you show up for your appointment.
+    </div>
+
+    <%= form_with url: booking_checkout_path(@booking_link.user.slug, @booking_link.slug), method: :post do %>
+      <%= submit_tag "Reserve Spot →", class: "mt-6 w-full bg-cta text-white py-3 rounded-xl font-medium hover:opacity-90 transition-opacity cursor-pointer text-base",
+          data: { turbo_submits_with: "Redirecting…" } %>
+    <% end %>
+  </div>
+</div>

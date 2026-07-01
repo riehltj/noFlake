@@ -1,0 +1,64 @@
+<% content_for :title, "Terms of Service – noFlake" %>
+
+<div class="max-w-3xl mx-auto px-6 py-16">
+  <div class="mb-10">
+    <p class="text-xs font-bold uppercase tracking-widest text-cta mb-2">Legal</p>
+    <h1 class="text-4xl font-extrabold text-gray-900">Terms of Service</h1>
+    <p class="mt-3 text-sm text-gray-400">Last updated: <%= Date.current.strftime("%B %-d, %Y") %></p>
+  </div>
+
+  <div class="prose prose-gray max-w-none space-y-8 text-gray-600 text-sm leading-relaxed">
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">1. Overview</h2>
+      <p>noFlake ("we", "us", "our") provides a platform that allows service providers ("Merchants") to collect refundable holds from their clients ("Clients") to reduce appointment no-shows. By creating an account or using our platform in any way, you agree to these Terms of Service.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">2. Eligibility</h2>
+      <p>You must be at least 18 years old and capable of entering into a binding contract to use noFlake. By using the platform, you represent that you meet these requirements.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">3. How It Works</h2>
+      <p>Merchants create booking links with a specified hold amount. Clients visit that link and pay the hold amount via Stripe. The hold is held by Stripe on behalf of the Merchant. When the Client attends their appointment, the Merchant releases (refunds) the hold. If the Client does not show up, the Merchant keeps the hold amount.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">4. Platform Fee</h2>
+      <p>noFlake charges Merchants a platform fee of <strong>1% of each hold amount</strong> collected through the platform. This fee is automatically deducted from the hold payment before it reaches the Merchant's Stripe account. Clients are charged only the hold amount shown on the booking page — the platform fee does not affect the Client's charge.</p>
+      <p class="mt-2">Stripe's standard payment processing fees (2.9% + $0.30 per transaction) apply separately and are also deducted from the Merchant's payout. noFlake does not control or profit from Stripe's fees.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">5. Stripe Connect</h2>
+      <p>Merchants must connect a Stripe account to receive payouts. By connecting Stripe, you agree to <a href="https://stripe.com/legal/connect-account" target="_blank" rel="noopener" class="text-cta hover:underline">Stripe's Connected Account Agreement</a>. noFlake is not responsible for any Stripe account issues, holds, or disputes initiated by Stripe.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">6. Refunds and Disputes</h2>
+      <p>Merchants are solely responsible for determining whether to release or keep a hold. noFlake provides the tooling but does not adjudicate disputes between Merchants and Clients. If a Client disputes a charge with their card issuer, Stripe's standard dispute process applies. noFlake is not liable for the outcome of any payment dispute.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">7. Prohibited Use</h2>
+      <p>You may not use noFlake to collect holds for illegal services, to defraud Clients, or for any purpose other than reducing appointment no-shows for legitimate service businesses. We reserve the right to terminate accounts that violate this policy.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">8. Limitation of Liability</h2>
+      <p>noFlake is provided "as is" without warranty of any kind. To the fullest extent permitted by law, noFlake shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the platform, including lost revenue, missed appointments, or payment failures.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">9. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. Continued use of the platform after changes are posted constitutes acceptance of the updated Terms. We will update the "Last updated" date above when changes are made.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-gray-900 mb-2">10. Contact</h2>
+      <p>Questions about these Terms? Email us at <a href="mailto:tyler.riehl16@gmail.com" class="text-cta hover:underline">tyler.riehl16@gmail.com</a>.</p>
+    </section>
+
+  </div>
+</div>

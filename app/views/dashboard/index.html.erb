@@ -1,0 +1,129 @@
+<% content_for :title, "Dashboard – noFlake" %>
+
+<div class="space-y-10">
+
+  <%# Stripe Connect Banner %>
+  <% if current_user.stripe_connected? %>
+    <div class="bg-white border border-gray-200 rounded-xl px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+        <span class="text-sm text-gray-600">Stripe connected</span>
+        <span class="text-xs text-gray-400 font-mono"><%= current_user.stripe_account_id %></span>
+      </div>
+      <%= link_to "View in Stripe →", "https://dashboard.stripe.com/connect/accounts/#{current_user.stripe_account_id}", target: "_blank", rel: "noopener", class: "text-sm text-cta hover:opacity-80 font-medium" %>
+    </div>
+  <% else %>
+    <div class="bg-accent/15 border border-accent/40 rounded-xl p-6 flex items-center justify-between">
+      <div>
+        <h2 class="font-semibold text-card">Connect your Stripe account</h2>
+        <p class="text-sm text-gray-600 mt-1">You need to connect Stripe before customers can pay holds.</p>
+      </div>
+      <%= link_to "Connect Stripe →", stripe_connect_path, class: "bg-cta hover:opacity-90 transition-opacity text-white font-medium px-5 py-2 rounded-lg text-sm whitespace-nowrap" %>
+    </div>
+  <% end %>
+
+  <%# Create Booking Link %>
+  <div class="bg-white border border-gray-200 rounded-xl p-6">
+    <h2 class="font-semibold text-lg mb-4">Create a Booking Link</h2>
+    <%= form_with url: booking_links_path, class: "space-y-4" do |f| %>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <%= f.label :service_name, "Service name", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.text_field :service_name, placeholder: "e.g. Haircut", required: true,
+              name: "booking_link[service_name]",
+              class: "w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cta" %>
+        </div>
+        <div>
+          <%= f.label :deposit_dollars, "Hold ($)", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.number_field :deposit_dollars, placeholder: "e.g. 25", required: true, min: 0.01, step: 0.01,
+              name: "booking_link[deposit_dollars]",
+              class: "w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cta" %>
+        </div>
+        <div>
+          <%= f.label :price_dollars, "Full price ($ optional)", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.number_field :price_dollars, placeholder: "e.g. 80", min: 0.01, step: 0.01,
+              name: "booking_link[price_dollars]",
+              class: "w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cta" %>
+        </div>
+      </div>
+      <%= f.submit "Create Link", class: "bg-cta text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity cursor-pointer" %>
+    <% end %>
+  </div>
+
+  <%# Booking Links %>
+  <% if @booking_links.any? %>
+    <div class="bg-white border border-gray-200 rounded-xl p-6">
+      <h2 class="font-semibold text-lg mb-4">Your Booking Links</h2>
+      <div class="space-y-3">
+        <% @booking_links.each do |link| %>
+          <% url = booking_url(current_user.slug, link.slug) %>
+          <div class="border border-gray-100 rounded-lg px-4 py-3">
+            <div class="flex items-center justify-between gap-3">
+              <div class="min-w-0">
+                <p class="font-medium text-sm"><%= link.service_name %></p>
+                <p class="text-xs text-gray-500 mt-0.5">
+                  Hold: $<%= sprintf("%.2f", link.deposit_cents / 100.0) %>
+                  <% if link.price_cents.present? %>
+                    &nbsp;·&nbsp; Full price: $<%= sprintf("%.2f", link.price_cents / 100.0) %>
+                  <% end %>
+                </p>
+                <p class="text-xs text-gray-400 font-mono mt-1 truncate"><%= url %></p>
+              </div>
+              <button
+                onclick="navigator.clipboard.writeText('<%= url %>').then(() => { this.textContent = 'Copied!'; setTimeout(() => this.textContent = 'Copy', 1500) })"
+                class="shrink-0 text-xs border border-gray-300 rounded px-3 py-1 hover:bg-gray-50">Copy</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# Payments %>
+  <div class="bg-white border border-gray-200 rounded-xl p-6">
+    <h2 class="font-semibold text-lg mb-4">Payments</h2>
+    <% if @payments.any? %>
+      <div class="overflow-x-auto -mx-6 px-6">
+      <table class="w-full text-sm min-w-[560px]">
+        <thead>
+          <tr class="text-left text-gray-500 border-b border-gray-100">
+            <th class="pb-3 font-medium">Customer</th>
+            <th class="pb-3 font-medium">Service</th>
+            <th class="pb-3 font-medium">Amount</th>
+            <th class="pb-3 font-medium">Status</th>
+            <th class="pb-3 font-medium">Date</th>
+            <th class="pb-3 font-medium"></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-50">
+          <% @payments.each do |payment| %>
+            <tr>
+              <td class="py-3 text-gray-700"><%= payment.customer_email %></td>
+              <td class="py-3 text-gray-500"><%= payment.booking_link.service_name %></td>
+              <td class="py-3">$<%= sprintf("%.2f", payment.amount_cents / 100.0) %></td>
+              <td class="py-3">
+                <% if payment.status == "refunded" %>
+                  <span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full">Refunded</span>
+                <% else %>
+                  <span class="bg-card/10 text-card text-xs px-2 py-0.5 rounded-full">Paid</span>
+                <% end %>
+              </td>
+              <td class="py-3 text-gray-400 text-xs"><%= payment.created_at.strftime("%b %-d, %Y") %></td>
+              <td class="py-3">
+                <% if payment.refundable? %>
+                  <%= button_to "Refund", refund_payment_path(payment), method: :post,
+                      data: { confirm: "Release this hold to #{payment.customer_email}?" },
+                      class: "text-xs border border-red-300 text-red-600 rounded px-3 py-1 hover:bg-red-50 cursor-pointer" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    <% else %>
+      <p class="text-sm text-gray-400">No payments yet. Share your booking link to get started.</p>
+    <% end %>
+  </div>
+
+</div>

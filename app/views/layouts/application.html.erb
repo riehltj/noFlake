@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "NoFlake" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="NoFlake">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= yield :head %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+    <link rel="icon" href="<%= asset_path('logo.ico') %>" type="image/x-icon">
+    <link rel="apple-touch-icon" href="<%= asset_path('logo.png') %>">
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  </head>
+  <body class="bg-gray-50 text-gray-900 min-h-screen">
+    <nav class="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-50">
+      <div class="max-w-4xl mx-auto flex items-center justify-between">
+        <a href="<%= user_signed_in? ? dashboard_path : root_path %>" class="flex items-center gap-2">
+          <%= image_tag "logo.webp", alt: "noFlake", class: "h-8 w-8" %>
+          <span class="font-semibold text-lg tracking-tight text-card">noFlake</span>
+        </a>
+
+        <%# Desktop nav %>
+        <div class="hidden sm:flex items-center gap-4 text-sm">
+          <% if user_signed_in? %>
+            <span class="text-gray-400 text-xs"><%= current_user.email %></span>
+            <%= link_to "Account", edit_user_registration_path, class: "text-gray-600 hover:text-gray-900" %>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-600 hover:text-gray-900 bg-transparent border-0 p-0 cursor-pointer text-sm" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path, class: "text-gray-600 hover:text-gray-900" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "bg-cta text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity" %>
+          <% end %>
+        </div>
+
+        <%# Hamburger button (mobile only) %>
+        <button
+          onclick="document.getElementById('app-mobile-nav').classList.toggle('hidden')"
+          class="sm:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <%# Mobile nav dropdown %>
+      <div id="app-mobile-nav" class="hidden sm:hidden border-t border-gray-100 mt-4 pt-4">
+        <div class="max-w-4xl mx-auto flex flex-col gap-1 text-sm">
+          <% if user_signed_in? %>
+            <span class="text-xs text-gray-400 mb-1"><%= current_user.email %></span>
+            <%= link_to "Account", edit_user_registration_path, class: "py-2.5 text-gray-700 font-medium hover:text-gray-900 border-b border-gray-100 block" %>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "py-2.5 text-left text-gray-600 hover:text-gray-900 bg-transparent border-0 p-0 cursor-pointer w-full text-sm" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path, class: "py-2.5 text-gray-700 hover:text-gray-900 border-b border-gray-100 block" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "mt-2 block w-full bg-cta text-white px-4 py-3 rounded-lg text-sm font-semibold text-center hover:opacity-90 transition-opacity" %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+      <% if notice.present? %>
+        <div class="mb-6 bg-card/10 border border-card/30 text-card px-4 py-3 rounded-lg"><%= notice %></div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg"><%= alert %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>
