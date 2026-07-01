@@ -5008,3 +5008,5 @@ Completed 200 OK in 9ms (Views: 5.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached
 [dotenv] Loaded [33m.env[0m
 [dotenv] Set [36mSTRIPE_SECRET_KEY[0m, [36mSTRIPE_PUBLISHABLE_KEY[0m, [36mSTRIPE_CLIENT_ID[0m, [36mSTRIPE_WEBHOOK_SECRET[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mSTRIPE_SECRET_KEY[0m, [36mSTRIPE_PUBLISHABLE_KEY[0m, [36mSTRIPE_CLIENT_ID[0m, [36mSTRIPE_WEBHOOK_SECRET[0m
+[dotenv] Loaded [33m.env[0m
